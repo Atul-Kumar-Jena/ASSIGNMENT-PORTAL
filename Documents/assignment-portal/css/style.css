@@ -1,0 +1,79 @@
+/* ============================================
+   Assignment Portal - Global Styles
+   ============================================ */
+
+/* Google Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base Typography */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Fade-in Animation for Route Transitions */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sidebar Active State Indicator */
+.sidebar-link.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-right: 3px solid #2563eb;
+}
+
+/* Custom Scrollbar for WebKit Browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Utility: Line Clamp for Descriptions */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Modal Backdrop Blur */
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+}
+
+/* Print Styles - Hide UI Chrome when Printing Grades */
+@media print {
+    aside, .md\:hidden, #toast-container, button[data-action="toggleSidebar"] {
+        display: none !important;
+    }
+    main {
+        padding-top: 0 !important;
+        margin-left: 0 !important;
+    }
+    #main-content {
+        max-width: 100% !important;
+    }
+}

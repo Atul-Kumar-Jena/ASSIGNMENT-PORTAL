@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment Portal - Developer Documentation</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm 2.5cm 2cm;
+            @bottom-center {
+                content: counter(page);
+                font-family: 'Georgia', serif;
+                font-size: 10pt;
+                color: #666;
+            }
+            @top-center {
+                content: "Assignment Submission Portal — Technical Documentation";
+                font-family: 'Georgia', serif;
+                font-size: 9pt;
+                color: #888;
+                font-style: italic;
+            }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.7;
+            color: #1a1a1a;
+            max-width: 100%;
+        }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: 700;
+            color: #1e40af;
+            border-bottom: 3px solid #1e40af;
+            padding-bottom: 0.3em;
+            margin-top: 0;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-top: 1.8em;
+            margin-bottom: 0.6em;
+            border-left: 4px solid #3b82f6;
+            padding-left: 12px;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 13pt;
+            font-weight: 700;
+            color: #1e40af;
+            margin-top: 1.4em;
+            margin-bottom: 0.5em;
+            page-break-after: avoid;
+        }
+
+        h4 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #374151;
+            margin-top: 1.2em;
+            margin-bottom: 0.4em;
+        }
+
+        p {
+            margin: 0.6em 0;
+            text-align: justify;
+            orphans: 3;
+            widows: 3;
+        }
+
+        .cover {
+            text-align: center;
+            padding-top: 6cm;
+            page-break-after: always;
+        }
+
+        .cover h1 {
+            font-size: 36pt;
+            border: none;
+            color: #1e40af;
+            margin-bottom: 0.3em;
+        }
+
+        .cover .subtitle {
+            font-size: 16pt;
+            color: #4b5563;
+            font-style: italic;
+            margin-bottom: 3cm;
+        }
+
+        .cover .meta {
+            font-size: 11pt;
+            color: #6b7280;
+            line-height: 2;
+        }
+
+        .toc {
+            page-break-after: always;
+        }
+
+        .toc h2 {
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5em;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+        }
+
+        .toc li {
+            padding: 0.4em 0;
+            border-bottom: 1px dotted #d1d5db;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .toc li span {
+            color: #9ca3af;
+        }
+
+        code {
+            font-family: 'Courier New', 'Consolas', monospace;
+            font-size: 9.5pt;
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #1f2937;
+        }
+
+        pre {
+            font-family: 'Courier New', 'Consolas', monospace;
+            font-size: 9pt;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-left: 3px solid #3b82f6;
+            padding: 12px 16px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.5;
+            margin: 1em 0;
+            page-break-inside: avoid;
+        }
+
+        .code-block {
+            page-break-inside: avoid;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+            font-size: 10pt;
+            page-break-inside: avoid;
+        }
+
+        th {
+            background: #eff6ff;
+            color: #1e40af;
+            font-weight: 700;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            margin: 1em 0;
+            page-break-inside: avoid;
+        }
+
+        .warning-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            margin: 1em 0;
+            page-break-inside: avoid;
+        }
+
+        .success-box {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 12px 16px;
+            margin: 1em 0;
+            page-break-inside: avoid;
+        }
+
+        ul, ol {
+            margin: 0.6em 0;
+            padding-left: 1.8em;
+        }
+
+        li {
+            margin: 0.3em 0;
+        }
+
+        .file-tree {
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 16px 20px;
+            line-height: 1.8;
+            page-break-inside: avoid;
+        }
+
+        .file-tree .dir { color: #1e40af; font-weight: bold; }
+        .file-tree .file { color: #374151; }
+        .file-tree .comment { color: #9ca3af; font-style: italic; }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 9pt;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        .badge-admin { background: #fef3c7; color: #92400e; }
+        .badge-trainer { background: #ede9fe; color: #5b21b6; }
+        .badge-student { background: #dbeafe; color: #1e40af; }
+
+        .method-sig {
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 0.8em 0;
+            page-break-inside: avoid;
+        }
+
+        .method-sig .kw { color: #f472b6; }
+        .method-sig .fn { color: #60a5fa; }
+        .method-sig .str { color: #a3e635; }
+        .method-sig .param { color: #fbbf24; }
+    </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+    <div style="font-size: 48pt; margin-bottom: 0.5em;">🎓</div>
+    <h1>Assignment Submission Portal</h1>
+    <div class="subtitle">Complete Technical Documentation & Developer Guide</div>
+    <div class="meta">
+        <strong>Version:</strong> 2.0 (Modular Refactor)<br>
+        <strong>Architecture:</strong> Vanilla ES6 Modules SPA<br>
+        <strong>Data Layer:</strong> localStorage Persistence<br>
+        <strong>Styling:</strong> Tailwind CSS (CDN) + Custom CSS<br>
+        <strong>Generated:</strong> May 2026
+    </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+        <li>1. Project Overview <span>3</span></li>
+        <li>2. Architecture Overview <span>4</span></li>
+        <li>3. File Structure & Organization <span>6</span></li>
+        <li>4. Core Modules <span>8</span></li>
+        <li>&nbsp;&nbsp;&nbsp;4.1 Store (State Management) <span>8</span></li>
+        <li>&nbsp;&nbsp;&nbsp;4.2 Utils (Shared Utilities) <span>10</span></li>
+        <li>5. Feature Modules <span>11</span></li>
+        <li>&nbsp;&nbsp;&nbsp;5.1 Auth Module <span>11</span></li>
+        <li>&nbsp;&nbsp;&nbsp;5.2 Admin Module <span>13</span></li>
+        <li>&nbsp;&nbsp;&nbsp;5.3 Trainer Module <span>15</span></li>
+        <li>&nbsp;&nbsp;&nbsp;5.4 Student Module <span>18</span></li>
+        <li>&nbsp;&nbsp;&nbsp;5.5 Shared Module <span>20</span></li>
+        <li>6. Application Router (app.js) <span>21</span></li>
+        <li>7. Data Models & Entity Relationships <span>23</span></li>
+        <li>8. User Flows by Role <span>25</span></li>
+        <li>9. Deployment Guide <span>28</span></li>
+        <li>10. API Reference <span>30</span></li>
+        <li>11. Troubleshooting <span>32</span></li>
+    </ul>
+</div>
+
+<!-- SECTION 1: PROJECT OVERVIEW -->
+<h2>1. Project Overview</h2>
+
+<p>The <strong>Assignment Submission Portal</strong> is a fully functional Single Page Application (SPA) designed for educational institutions to manage classes, assignments, and student submissions across three distinct user roles: <strong>Administrator</strong>, <strong>Trainer</strong> (Teacher), and <strong>Student</strong>.</p>
+
+<p>Originally built as a monolithic HTML file with embedded JavaScript, this version has been refactored into a clean, modular architecture using native ES6 modules. The application requires <em>no build step</em>, <em>no framework</em>, and <em>no backend server</em> — all data persists in the browser via <code>localStorage</code>.</p>
+
+<h3>Key Design Principles</h3>
+<ul>
+    <li><strong>Zero Dependencies (Runtime):</strong> Only Tailwind CSS and Font Awesome are loaded from CDNs.</li>
+    <li><strong>Modular Architecture:</strong> Each feature lives in its own module with clear imports/exports.</li>
+    <li><strong>Event Delegation:</strong> All user interactions route through a single handler, eliminating inline <code>onclick</code> attributes.</li>
+    <li><strong>Role-Based Routing:</strong> The sidebar and available pages adapt dynamically to the authenticated user's role.</li>
+    <li><strong>Print-Friendly:</strong> CSS print styles hide navigation chrome when printing grade reports.</li>
+</ul>
+
+<div class="success-box">
+    <strong>✓ Production Ready:</strong> The application can be deployed to any static host (GitHub Pages, Netlify, Vercel, traditional Apache/Nginx) with zero configuration.
+</div>
+
+<h3>Technology Stack</h3>
+<table>
+    <tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>Markup</td><td>HTML5</td><td>Semantic structure, application shell</td></tr>
+    <tr><td>Styling</td><td>Tailwind CSS (CDN)</td><td>Utility-first responsive design</td></tr>
+    <tr><td>Icons</td><td>Font Awesome 6 (CDN)</td><td>Consistent iconography</td></tr>
+    <tr><td>Logic</td><td>Vanilla ES6 Modules</td><td>Feature modules, state management, routing</td></tr>
+    <tr><td>Persistence</td><td>localStorage API</td><td>Client-side data storage</td></tr>
+    <tr><td>Animation</td><td>CSS Keyframes</td><td>Page transition fade-ins</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 2: ARCHITECTURE OVERVIEW -->
+<h2>2. Architecture Overview</h2>
+
+<p>The application follows a layered architecture with clear separation of concerns. Data flows in one direction: <strong>User Action → Event Delegation → Store Update → localStorage Save → DOM Re-render</strong>.</p>
+
+<h3>2.1 Layer Diagram</h3>
+
+<pre>
+┌─────────────────────────────────────────────────────────────┐
+│  PRESENTATION LAYER                                         │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐│
+│  │  index.html │  │  css/       │  │  Tailwind + FA CDN  ││
+│  │  (Shell)    │  │  style.css  │  │  (External Assets)  ││
+│  └─────────────┘  └─────────────┘  └─────────────────────┘│
+├─────────────────────────────────────────────────────────────┤
+│  APPLICATION LAYER                                          │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │  app.js — Router, Layout Shell, Event Delegation Hub  │  │
+│  └───────────────────────────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────┤
+│  FEATURE LAYER                                              │
+│  ┌──────────┐ ┌──────────┐ ┌───────────┐ ┌─────────────┐ │
+│  │ auth.js  │ │ admin.js │ │trainer.js  │ │ student.js  │ │
+│  │ (Login)  │ │ (Users)  │ │(Classes)   │ │ (Submit)    │ │
+│  └──────────┘ └──────────┘ └───────────┘ └─────────────┘ │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │  shared.js — Profile settings (cross-cutting)         │  │
+│  └───────────────────────────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────┤
+│  CORE LAYER                                                 │
+│  ┌─────────────┐  ┌───────────────────────────────────────┐  │
+│  │  store.js   │  │  utils.js                             │  │
+│  │  (State)    │  │  (Toast, Modal, Formatters)           │  │
+│  └─────────────┘  └───────────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────┤
+│  PERSISTENCE LAYER                                        │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │  localStorage — portal_data + portal_session keys     │  │
+│  └───────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+</pre>
+
+<h3>2.2 Module Dependency Graph</h3>
+
+<pre>
+                    ┌─────────────┐
+                    │   app.js    │
+                    │  (Router)   │
+                    └──────┬──────┘
+                           │ imports
+           ┌───────────────┼───────────────┐
+           │               │               │
+    ┌──────▼──────┐ ┌──────▼──────┐ ┌──────▼──────┐
+    │   store.js  │ │   utils.js  │ │  features/  │
+    │   (State)   │ │ (Utilities) │ │  (UI Logic) │
+    └─────────────┘ └─────────────┘ └──────┬──────┘
+                                            │
+                              ┌─────────────┼─────────────┐
+                              │             │             │
+                        ┌─────▼─────┐ ┌────▼────┐ ┌──────▼──────┐
+                        │  auth.js  │ │admin.js │ │ trainer.js  │
+                        └───────────┘ └─────────┘ └─────────────┘
+                              │
+                        ┌─────▼─────┐
+                        │student.js │
+                        └───────────┘
+                              │
+                        ┌─────▼─────┐
+                        │ shared.js │
+                        └───────────┘
+</pre>
+
+<div class="highlight-box">
+    <strong>Design Decision:</strong> All feature modules import from <code>core/store.js</code> and <code>core/utils.js</code>, but never from each other. This prevents circular dependencies and keeps the architecture flat.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 3: FILE STRUCTURE -->
+<h2>3. File Structure & Organization</h2>
+
+<p>Each file has a single responsibility. The naming convention follows the pattern: <code>js/{layer}/{module}.js</code> where <code>{layer}</code> is either <code>core</code> (infrastructure) or <code>features</code> (business logic).</p>
+
+<div class="file-tree">
+<span class="dir">assignment-portal/</span>
+│
+├── <span class="file">index.html</span>              <span class="comment"># Application shell — loads CSS + JS entry point</span>
+│
+├── <span class="dir">css/</span>
+│   └── <span class="file">style.css</span>           <span class="comment"># Global styles, animations, scrollbar, print media</span>
+│
+├── <span class="dir">js/</span>
+│   ├── <span class="dir">core/</span>               <span class="comment"># Infrastructure modules (no UI)</span>
+│   │   ├── <span class="file">store.js</span>        <span class="comment"># State container + localStorage persistence</span>
+│   │   └── <span class="file">utils.js</span>        <span class="comment"># Toast, modal helpers, date formatters</span>
+│   │
+│   ├── <span class="dir">features/</span>           <span class="comment"># Business logic modules (render + handlers)</span>
+│   │   ├── <span class="file">auth.js</span>         <span class="comment"># Login screen, registration, demo credentials</span>
+│   │   ├── <span class="file">admin.js</span>        <span class="comment"># Admin overview, trainer/student CRUD</span>
+│   │   ├── <span class="file">trainer.js</span>      <span class="comment"># Class creation, assignments, grading</span>
+│   │   ├── <span class="file">student.js</span>      <span class="comment"># Class enrollment, submission, grades</span>
+│   │   └── <span class="file">shared.js</span>       <span class="comment"># Profile settings (all roles)</span>
+│   │
+│   └── <span class="file">app.js</span>              <span class="comment"># Entry point: router, layout, event delegation</span>
+│
+└── <span class="file">README.md</span>               <span class="comment"># Deployment instructions & quick start</span>
+</div>
+
+<h3>3.1 Module Size & Complexity</h3>
+<table>
+    <tr><th>Module</th><th>Lines</th><th>Responsibilities</th><th>Depends On</th></tr>
+    <tr><td><code>store.js</code></td><td>~80</td><td>State, persistence, ID generation</td><td>None</td></tr>
+    <tr><td><code>utils.js</code></td><td>~50</td><td>Toast, modals, formatters</td><td>None</td></tr>
+    <tr><td><code>auth.js</code></td><td>~120</td><td>Login/register UI + handlers</td><td>store, utils</td></tr>
+    <tr><td><code>admin.js</code></td><td>~140</td><td>Overview, user CRUD, modals</td><td>store, utils, shared</td></tr>
+    <tr><td><code>trainer.js</code></td><td>~280</td><td>Classes, assignments, grading</td><td>store, utils, shared</td></tr>
+    <tr><td><code>student.js</code></td><td>~220</td><td>Enrollment, submission, grades</td><td>store, utils, shared</td></tr>
+    <tr><td><code>shared.js</code></td><td>~60</td><td>Profile form + update handler</td><td>store, utils</td></tr>
+    <tr><td><code>app.js</code></td><td>~150</td><td>Router, layout, action dispatcher</td><td>All features</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4: CORE MODULES -->
+<h2>4. Core Modules</h2>
+
+<h3>4.1 Store — State Management (<code>js/core/store.js</code>)</h3>
+
+<p>The <code>store</code> object is the single source of truth for all application data. It encapsulates the four entity arrays and provides methods for CRUD operations, authentication, and persistence.</p>
+
+<h4>Entity Arrays</h4>
+<table>
+    <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+    <tr><td><code>currentUser</code></td><td>Object|null</td><td>Active session user object</td></tr>
+    <tr><td><code>users</code></td><td>Array</td><td>All registered accounts</td></tr>
+    <tr><td><code>classes</code></td><td>Array</td><td>Classes created by trainers</td></tr>
+    <tr><td><code>assignments</code></td><td>Array</td><td>Assignments linked to classes</td></tr>
+    <tr><td><code>submissions</code></td><td>Array</td><td>Student submissions with grades</td></tr>
+</table>
+
+<h4>Key Methods</h4>
+
+<div class="method-sig">
+    <span class="kw">init</span>() <span class="comment">// Loads data from localStorage or seeds defaults</span>
+</div>
+<p>Called once at application startup. If <code>portal_data</code> exists in localStorage, it populates all arrays. Otherwise, it calls <code>seedData()</code> to create three default demo accounts.</p>
+
+<div class="method-sig">
+    <span class="kw">save</span>() <span class="comment">// Serializes all arrays to localStorage</span>
+</div>
+<p>Must be called after <em>every</em> mutation to ensure persistence across page refreshes. The pattern is: <em>mutate array → call store.save()</em>.</p>
+
+<div class="method-sig">
+    <span class="kw">login</span>(<span class="param">email</span>: string, <span class="param">password</span>: string): boolean
+</div>
+<p>Authenticates against the <code>users</code> array. On success, stores the user object in <code>currentUser</code> and writes <code>portal_session</code> to localStorage for automatic re-login.</p>
+
+<div class="method-sig">
+    <span class="kw">logout</span>() <span class="comment">// Clears session and currentUser</span>
+</div>
+
+<div class="method-sig">
+    <span class="kw">generateId</span>(): string <span class="comment">// Timestamp + random base36 string</span>
+</div>
+
+<div class="method-sig">
+    <span class="kw">generateCode</span>(): string <span class="comment">// 6-char uppercase class join code</span>
+</div>
+
+<div class="warning-box">
+    <strong>⚠ Important:</strong> The store does <em>not</em> trigger re-renders automatically. Each feature module is responsible for calling <code>app.navigate()</code> after mutating state.
+</div>
+
+<h4>Data Flow Example: Creating a Class</h4>
+<pre>
+1. Trainer clicks "Create Class" → form submit event
+2. Trainer module reads form data
+3. Pushes new class object to store.classes
+4. Calls store.save() → writes to localStorage
+5. Calls app.navigate('classes') → re-renders list
+</pre>
+
+<div class="page-break"></div>
+
+<h3>4.2 Utils — Shared Utilities (<code>js/core/utils.js</code>)</h3>
+
+<p>The <code>Utils</code> object provides UI helpers that are used across all feature modules. It has no dependencies and operates purely on the DOM.</p>
+
+<h4>Methods</h4>
+
+<div class="method-sig">
+    <span class="kw">openModal</span>(<span class="param">id</span>: string)
+</div>
+<p>Removes the <code>hidden</code> class from the modal element. Assumes the modal uses Tailwind's <code>hidden</code> utility for visibility toggling.</p>
+
+<div class="method-sig">
+    <span class="kw">closeModal</span>(<span class="param">id</span>: string)
+</div>
+<p>Adds the <code>hidden</code> class back to the modal element.</p>
+
+<div class="method-sig">
+    <span class="kw">showToast</span>(<span class="param">message</span>: string, <span class="param">type</span>: 'success' | 'error')
+</div>
+<p>Creates a toast notification element, appends it to <code>#toast-container</code>, animates it in from the right, and auto-removes it after 3 seconds. Uses CSS transforms for the slide-in animation.</p>
+
+<div class="method-sig">
+    <span class="kw">formatDate</span>(<span class="param">dateString</span>: string): string
+</div>
+<p>Wraps <code>new Date().toLocaleDateString()</code> for consistent date formatting across the app.</p>
+
+<div class="page-break"></div>
+
+<!-- SECTION 5: FEATURE MODULES -->
+<h2>5. Feature Modules</h2>
+
+<h3>5.1 Auth Module (<code>js/features/auth.js</code>)</h3>
+
+<p>Handles the public-facing authentication layer. This is the only module that renders when no user is logged in. It provides login, registration, and one-click demo credential fillers.</p>
+
+<h4>Public API</h4>
+
+<div class="method-sig">
+    <span class="kw">Auth.render</span>(<span class="param">appInstance</span>: App)
+</div>
+<p>Builds the full login/registration DOM and injects it into <code>#app</code>. Accepts the main App instance so it can call <code>app.renderDashboard()</code> on successful login.</p>
+
+<h4>Internal Flow</h4>
+<ol>
+    <li><strong>Tab Switching:</strong> Clicking "Login" or "Student Signup" toggles form visibility and active tab styling via data attributes (<code>data-auth-tab</code>).</li>
+    <li><strong>Login:</strong> Form submit → <code>store.login()</code> → if true, <code>app.renderDashboard()</code>; else toast error.</li>
+    <li><strong>Registration:</strong> Validates email uniqueness → pushes new student to <code>store.users</code> → <code>store.save()</code> → switches to login tab.</li>
+    <li><strong>Demo Credentials:</strong> Three clickable labels that auto-fill the login form with pre-seeded accounts.</li>
+</ol>
+
+<h4>DOM Structure</h4>
+<pre>
+#app
+└── .min-h-screen (centered flex container)
+    └── .bg-white (card)
+        ├── Header (logo + title)
+        ├── Tab Buttons (Login / Register)
+        ├── Login Form (#login-form)
+        ├── Register Form (#register-form, hidden)
+        └── Demo Credentials Footer
+</pre>
+
+<div class="page-break"></div>
+
+<h3>5.2 Admin Module (<code>js/features/admin.js</code>)</h3>
+
+<p>The admin role has a bird's-eye view of the entire system. They can see aggregate metrics and manage user accounts, but cannot create classes or assignments directly.</p>
+
+<h4>Pages</h4>
+<table>
+    <tr><th>Page</th><th>Route ID</th><th>Description</th></tr>
+    <tr><td>Overview</td><td><code>overview</code></td><td>Three stat cards: total trainers, students, classes</td></tr>
+    <tr><td>Trainers</td><td><code>trainers</code></td><td>Table of trainers + add/remove</td></tr>
+    <tr><td>Students</td><td><code>students</code></td><td>Table of students + add/remove</td></tr>
+    <tr><td>Profile</td><td><code>profile</code></td><td>Shared profile settings</td></tr>
+</table>
+
+<h4>Key Method: renderUserManagement</h4>
+
+<div class="method-sig">
+    <span class="kw">renderUserManagement</span>(<span class="param">container</span>: HTMLElement, <span class="param">role</span>: 'trainer' | 'student', <span class="param">app</span>: App)
+</div>
+
+<p>This is a <strong>polymorphic renderer</strong> — it accepts a role parameter and renders the appropriate table and modal. This eliminates code duplication between the Trainers and Students pages.</p>
+
+<h4>Cascade Deletion Logic</h4>
+<p>When an admin deletes a user, the system performs automatic cleanup:</p>
+<ul>
+    <li><strong>Delete Student:</strong> Removes their submissions + removes their ID from all <code>class.students</code> arrays.</li>
+    <li><strong>Delete Trainer:</strong> Removes all their classes → which cascades to assignments → which cascades to orphaned submissions.</li>
+</ul>
+
+<div class="warning-box">
+    <strong>⚠ Data Integrity:</strong> The cascade logic in <code>deleteUser()</code> ensures no dangling references remain in localStorage. Always verify related arrays are cleaned when deleting entities.
+</div>
+
+<div class="page-break"></div>
+
+<h3>5.3 Trainer Module (<code>js/features/trainer.js</code>)</h3>
+
+<p>The most complex feature module. Trainers manage the full lifecycle of classes, assignments, and grading.</p>
+
+<h4>Pages</h4>
+<table>
+    <tr><th>Page</th><th>Route ID</th><th>Description</th></tr>
+    <tr><td>Dashboard</td><td><code>overview</code></td><td>Summary cards + recent activity widgets</td></tr>
+    <tr><td>My Classes</td><td><code>classes</code></td><td>Class cards with join codes + student management</td></tr>
+    <tr><td>Assignments</td><td><code>assignments</code></td><td>Assignment list + creation modal</td></tr>
+    <tr><td>Submissions</td><td><code>submissions</code></td><td>Table of all submissions + grade modal</td></tr>
+    <tr><td>Profile</td><td><code>profile</code></td><td>Shared profile settings</td></tr>
+</table>
+
+<h4>Class Management</h4>
+<p>Each class receives an auto-generated 6-character uppercase join code (e.g., <code>ABC123</code>). Students use this code to enroll. The trainer can view enrolled students in a modal and remove them individually.</p>
+
+<h4>Assignment Creation</h4>
+<p>Assignments are scoped to a specific class. The form requires:</p>
+<ul>
+    <li><strong>Class:</strong> Dropdown of trainer's classes</li>
+    <li><strong>Title & Description:</strong> Text content</li>
+    <li><strong>Due Date:</strong> HTML5 date picker</li>
+    <li><strong>Total Marks:</strong> Positive integer</li>
+</ul>
+
+<h4>Grading Workflow</h4>
+<ol>
+    <li>Trainer navigates to <strong>Submissions</strong> page</li>
+    <li>Sees table with status badges (Pending / Graded)</li>
+    <li>Clicks <strong>Review</strong> on a pending submission</li>
+    <li>Modal opens showing student name, assignment title, and submitted content</li>
+    <li>Enters marks (validated against <code>totalMarks</code>) and optional feedback</li>
+    <li>Saves → submission updated in store → table refreshes</li>
+</ol>
+
+<div class="method-sig">
+    <span class="kw">gradeSubmission</span>(<span class="param">subId</span>: string)
+</div>
+<p>Populates the grade modal with submission details. If the submission was previously graded, pre-fills the grade and feedback fields for editing.</p>
+
+<div class="page-break"></div>
+
+<h3>5.4 Student Module (<code>js/features/student.js</code>)</h3>
+
+<p>Students enroll in classes, submit assignments, and track their academic performance.</p>
+
+<h4>Pages</h4>
+<table>
+    <tr><th>Page</th><th>Route ID</th><th>Description</th></tr>
+    <tr><td>Dashboard</td><td><code>overview</code></td><td>Enrolled classes, pending count, average grade</td></tr>
+    <tr><td>My Classes</td><td><code>classes</code></td><td>Enrolled classes + join-by-code modal</td></tr>
+    <tr><td>My Assignments</td><td><code>assignments</code></td><td>Assignment list with submit buttons</td></tr>
+    <tr><td>Grades</td><td><code>grades</code></td><td>Color-coded grade table with percentages</td></tr>
+    <tr><td>Profile</td><td><code>profile</code></td><td>Shared profile settings</td></tr>
+</table>
+
+<h4>Class Enrollment</h4>
+<p>Students join classes by entering a 6-character code. The system validates:</p>
+<ul>
+    <li>Code exists in <code>store.classes</code></li>
+    <li>Student is not already enrolled</li>
+</ul>
+<p>On success, the student's ID is pushed to <code>class.students</code> and the class immediately appears in their "My Classes" list.</p>
+
+<h4>Assignment Status Logic</h4>
+<p>Each assignment card displays a status badge determined by:</p>
+<table>
+    <tr><th>Condition</th><th>Badge</th><th>Action</th></tr>
+    <tr><td>Submitted & graded</td><td><span style="color:#15803d;background:#dcfce7;padding:2px 8px;border-radius:12px;font-size:9pt;">Submitted</span></td><td>Show grade</td></tr>
+    <tr><td>Submitted & pending</td><td><span style="color:#15803d;background:#dcfce7;padding:2px 8px;border-radius:12px;font-size:9pt;">Submitted</span></td><td>Show submitted date</td></tr>
+    <tr><td>Not submitted, past due</td><td><span style="color:#b91c1c;background:#fee2e2;padding:2px 8px;border-radius:12px;font-size:9pt;">Expired</span></td><td>No action</td></tr>
+    <tr><td>Not submitted, future due</td><td><span style="color:#a16207;background:#fef9c3;padding:2px 8px;border-radius:12px;font-size:9pt;">Pending</span></td><td>"Submit Work" button</td></tr>
+</table>
+
+<h4>Grade Calculation</h4>
+
+<div class="method-sig">
+    <span class="kw">calculateAverageGrade</span>(<span class="param">studentId</span>: string): string
+</div>
+
+<p>Computes the average percentage across all graded submissions. For each submission, calculates <code>(grade / totalMarks) × 100</code>, then averages these percentages. Returns <code>'N/A'</code> if no graded submissions exist.</p>
+
+<div class="page-break"></div>
+
+<h3>5.5 Shared Module (<code>js/features/shared.js</code>)</h3>
+
+<p>Contains components used by all three roles. Currently houses the Profile settings page.</p>
+
+<h4>Profile Update Flow</h4>
+<ol>
+    <li>Form pre-filled with current user's name and email</li>
+    <li>Password fields are optional — leaving them blank preserves the current password</li>
+    <li>On submit: validates password match → updates <code>store.users</code> array → updates <code>store.currentUser</code> → updates <code>portal_session</code> in localStorage → calls <code>app.renderDashboard()</code> to refresh sidebar name</li>
+</ol>
+
+<div class="highlight-box">
+    <strong>Note:</strong> The profile form uses <code>app.renderDashboard()</code> instead of <code>app.navigate()</code> because the sidebar displays the user's name, which needs to update after a name change.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 6: APP ROUTER -->
+<h2>6. Application Router (<code>js/app.js</code>)</h2>
+
+<p>The <code>App</code> class is the central nervous system of the application. It handles initialization, layout rendering, navigation, and the global event delegation system.</p>
+
+<h3>6.1 Class Responsibilities</h3>
+
+<table>
+    <tr><th>Method</th><th>Purpose</th></tr>
+    <tr><td><code>init()</code></td><td>Bootstraps store, attaches global click listener, routes to auth or dashboard</td></tr>
+    <tr><td><code>handleAction()</code></td><td>Central dispatcher for all <code>data-action</code> button clicks</td></tr>
+    <tr><td><code>navigate(page)</code></td><td>Updates sidebar state, animates content swap, delegates to role module</td></tr>
+    <tr><td><code>renderDashboard()</code></td><td>Builds sidebar + mobile header + main content area shell</td></tr>
+</table>
+
+<h3>6.2 Event Delegation System</h3>
+
+<p>Instead of attaching individual click handlers to every button (which would break when DOM is re-rendered), the app uses a single delegated listener on <code>document</code>:</p>
+
+<pre>
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    this.handleAction(btn.dataset.action, btn.dataset.id, btn.dataset.extra, e);
+});
+</pre>
+
+<p>Buttons declare their intent via HTML data attributes:</p>
+<pre>
+&lt;button data-action="deleteClass" data-id="abc123"&gt;Delete&lt;/button&gt;
+&lt;button data-action="navigate" data-id="submissions"&gt;Grade&lt;/button&gt;
+&lt;button data-action="closeModal" data-id="grade-modal"&gt;Cancel&lt;/button&gt;
+</pre>
+
+<h4>Action Registry</h4>
+<table>
+    <tr><th>Action</th><th>Required data-id</th><th>Description</th></tr>
+    <tr><td><code>logout</code></td><td>—</td><td>Clears session, renders auth screen</td></tr>
+    <tr><td><code>navigate</code></td><td>page name</td><td>Routes to a dashboard page</td></tr>
+    <tr><td><code>toggleSidebar</code></td><td>—</td><td>Mobile sidebar visibility toggle</td></tr>
+    <tr><td><code>open*Modal</code></td><td>—</td><td>Various modal openers</td></tr>
+    <tr><td><code>closeModal</code></td><td>modal ID</td><td>Hides specified modal</td></tr>
+    <tr><td><code>deleteUser</code></td><td>user ID</td><td>Removes user + cascades</td></tr>
+    <tr><td><code>deleteClass</code></td><td>class ID</td><td>Removes class + assignments</td></tr>
+    <tr><td><code>deleteAssignment</code></td><td>assignment ID</td><td>Removes assignment + submissions</td></tr>
+    <tr><td><code>viewClassStudents</code></td><td>class ID</td><td>Opens student management modal</td></tr>
+    <tr><td><code>removeStudentFromClass</code></td><td>class ID</td><td>data-extra = student ID</td></tr>
+    <tr><td><code>gradeSubmission</code></td><td>submission ID</td><td>Opens grade modal</td></tr>
+    <tr><td><code>openSubmitModal</code></td><td>assignment ID</td><td>Opens assignment submit modal</td></tr>
+</table>
+
+<h3>6.3 Sidebar Configuration</h3>
+
+<p>The sidebar items are defined in a configuration object keyed by role:</p>
+
+<pre>
+const sidebarConfig = {
+    admin: [
+        { id: 'overview', icon: 'fa-chart-pie', label: 'Overview' },
+        { id: 'trainers', icon: 'fa-chalkboard-teacher', label: 'Trainers' },
+        { id: 'students', icon: 'fa-user-graduate', label: 'Students' },
+        { id: 'profile', icon: 'fa-user-cog', label: 'Profile' }
+    ],
+    trainer: [ /* 5 items */ ],
+    student: [ /* 5 items */ ]
+};
+</pre>
+
+<p>This declarative approach makes it trivial to add new pages or reorder navigation without touching rendering logic.</p>
+
+<div class="page-break"></div>
+
+<!-- SECTION 7: DATA MODELS -->
+<h2>7. Data Models & Entity Relationships</h2>
+
+<h3>7.1 Entity Relationship Diagram</h3>
+
+<pre>
+┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+│    User     │       │    Class    │       │ Assignment  │
+├─────────────┤       ├─────────────┤       ├─────────────┤
+│ id (PK)     │       │ id (PK)     │       │ id (PK)     │
+│ name        │       │ trainerId   │◄──────┤ classId (FK)│
+│ email       │       │ name        │       │ title       │
+│ password    │       │ description │       │ description │
+│ role        │       │ code        │       │ dueDate     │
+│ createdAt   │       │ students[]  │       │ totalMarks  │
+└─────────────┘       │ createdAt   │       │ createdAt   │
+       │              └─────────────┘       └─────────────┘
+       │                      │                    │
+       │                      │                    │
+       │                      │                    ▼
+       │                      │              ┌─────────────┐
+       │                      │              │  Submission │
+       │                      │              ├─────────────┤
+       │                      │              │ id (PK)     │
+       │                      │              │ assignmentId│◄── FK
+       └──────────────────────┼──────────────┤ studentId   │◄── FK
+                              │              │ content     │
+                              │              │ submittedAt │
+                              │              │ grade       │
+                              │              │ feedback    │
+                              │              └─────────────┘
+                              │
+                              ▼
+                    ┌─────────────────┐
+                    │ Class.students  │
+                    │ (junction ref)  │
+                    │ [userId, ...]   │
+                    └─────────────────┘
+</pre>
+
+<h3>7.2 Schema Definitions</h3>
+
+<h4>User</h4>
+<pre>
+{
+    id: string,          // Unique identifier (base36 timestamp + random)
+    name: string,         // Display name
+    email: string,        // Login credential (unique)
+    password: string,     // Plaintext (demo only — hash in production)
+    role: 'admin' | 'trainer' | 'student',
+    createdAt: string     // ISO 8601 timestamp
+}
+</pre>
+
+<h4>Class</h4>
+<pre>
+{
+    id: string,
+    trainerId: string,    // FK → User.id (role must be 'trainer')
+    name: string,
+    description: string,
+    code: string,         // 6-char uppercase join code
+    students: string[],   // Array of User.id (students)
+    createdAt: string
+}
+</pre>
+
+<h4>Assignment</h4>
+<pre>
+{
+    id: string,
+    classId: string,      // FK → Class.id
+    title: string,
+    description: string,
+    dueDate: string,      // YYYY-MM-DD format
+    totalMarks: number,  // Positive integer
+    createdAt: string
+}
+</pre>
+
+<h4>Submission</h4>
+<pre>
+{
+    id: string,
+    assignmentId: string, // FK → Assignment.id
+    studentId: string,    // FK → User.id (role must be 'student')
+    content: string,      // Student's answer text
+    submittedAt: string,  // ISO 8601 timestamp
+    grade: number|null,   // Null until graded
+    feedback: string|null   // Trainer's optional feedback
+}
+</pre>
+
+<div class="page-break"></div>
+
+<!-- SECTION 8: USER FLOWS -->
+<h2>8. User Flows by Role</h2>
+
+<h3>8.1 Admin Flow</h3>
+<div class="highlight-box">
+    <span class="role-badge badge-admin">ADMIN</span>
+</div>
+<pre>
+Login → Overview (metrics) 
+  │
+  ├─► Trainers ──► Add Trainer (modal form)
+  │              ──► Delete Trainer (cascade: classes → assignments → submissions)
+  │
+  ├─► Students ──► Add Student (modal form)
+  │              ──► Delete Student (cascade: submissions + class enrollments)
+  │
+  └─► Profile ───► Update name/email/password
+</pre>
+
+<h3>8.2 Trainer Flow</h3>
+<div class="highlight-box">
+    <span class="role-badge badge-trainer">TRAINER</span>
+</div>
+<pre>
+Login → Dashboard (class count, assignment count, pending grading)
+  │
+  ├─► My Classes ──► Create Class (auto-generates join code)
+  │              ──► Delete Class (cascade: assignments)
+  │              ──► Manage Students (view enrolled + remove)
+  │
+  ├─► Assignments ─► Create Assignment (scoped to a class)
+  │               ─► Delete Assignment (cascade: submissions)
+  │
+  ├─► Submissions ─► Review Pending → Grade (marks + feedback)
+  │               ─► View Graded (edit existing grades)
+  │
+  └─► Profile ─────► Update name/email/password
+</pre>
+
+<h3>8.3 Student Flow</h3>
+<div class="highlight-box">
+    <span class="role-badge badge-student">STUDENT</span>
+</div>
+<pre>
+Login → Dashboard (enrolled classes, pending assignments, avg grade)
+  │
+  ├─► My Classes ──► Join Class (enter 6-char code)
+  │              ──► View enrolled classes
+  │
+  ├─► My Assignments ─► Submit Work (text area)
+  │                  ─► View Status (Pending / Submitted / Expired)
+  │                  ─► View Grade (if already graded)
+  │
+  ├─► Grades ──────► Table: assignment, class, marks, %, feedback
+  │               ─► Color-coded: green (≥80%), yellow (≥50%), red (<50%)
+  │
+  └─► Profile ─────► Update name/email/password
+</pre>
+
+<div class="page-break"></div>
+
+<!-- SECTION 9: DEPLOYMENT -->
+<h2>9. Deployment Guide</h2>
+
+<h3>9.1 Local Development</h3>
+<p>Because the app uses ES6 modules (<code>type="module"</code>), you should serve it via a local server rather than opening <code>file://</code> directly (some browsers block module loading from file URLs).</p>
+
+<h4>Option A: Python HTTP Server</h4>
+<pre>
+cd assignment-portal
+python -m http.server 8000
+# Open http://localhost:8000
+</pre>
+
+<h4>Option B: Node.js (npx serve)</h4>
+<pre>
+cd assignment-portal
+npx serve
+</pre>
+
+<h4>Option C: VS Code Live Server</h4>
+<p>Install the "Live Server" extension, right-click <code>index.html</code>, and select "Open with Live Server".</p>
+
+<h3>9.2 Production Deployment</h3>
+
+<h4>GitHub Pages (Free)</h4>
+<ol>
+    <li>Push the <code>assignment-portal</code> folder to a GitHub repository</li>
+    <li>Go to <strong>Settings → Pages</strong></li>
+    <li>Select branch: <code>main</code>, folder: <code>/ (root)</code></li>
+    <li>Site live at: <code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code></li>
+</ol>
+
+<h4>Netlify (Free)</h4>
+<ol>
+    <li>Visit <a href="https://app.netlify.com/drop">netlify.com/drop</a></li>
+    <li>Drag and drop the <code>assignment-portal</code> folder</li>
+    <li>Instant live URL provided</li>
+</ol>
+
+<h4>Vercel (Free)</h4>
+<pre>
+npm i -g vercel
+cd assignment-portal
+vercel
+</pre>
+
+<h4>Traditional Hosting</h4>
+<p>Upload all files via FTP/SFTP. Ensure <code>index.html</code> is at the document root. No server-side processing (PHP, Node, etc.) is required.</p>
+
+<h3>9.3 Browser Support</h3>
+<table>
+    <tr><th>Browser</th><th>Minimum Version</th><th>Notes</th></tr>
+    <tr><td>Chrome</td><td>80+</td><td>Full support</td></tr>
+    <tr><td>Firefox</td><td>75+</td><td>Full support</td></tr>
+    <tr><td>Safari</td><td>13.1+</td><td>Full support</td></tr>
+    <tr><td>Edge</td><td>80+</td><td>Full support</td></tr>
+</table>
+
+<div class="warning-box">
+    <strong>⚠ Security Note:</strong> Passwords are stored in plaintext in localStorage. This is acceptable for a demo/educational application but <em>must</em> be replaced with proper hashing (bcrypt/Argon2) and server-side authentication in any production system.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 10: API REFERENCE -->
+<h2>10. Quick API Reference</h2>
+
+<h3>10.1 Store Methods</h3>
+<table>
+    <tr><th>Method</th><th>Params</th><th>Returns</th><th>Side Effects</th></tr>
+    <tr><td><code>init()</code></td><td>—</td><td>void</td><td>Loads or seeds data</td></tr>
+    <tr><td><code>save()</code></td><td>—</td><td>void</td><td>Writes to localStorage</td></tr>
+    <tr><td><code>login(email, password)</code></td><td>2 strings</td><td>boolean</td><td>Sets currentUser + session</td></tr>
+    <tr><td><code>logout()</code></td><td>—</td><td>void</td><td>Clears currentUser + session</td></tr>
+    <tr><td><code>generateId()</code></td><td>—</td><td>string</td><td>None</td></tr>
+    <tr><td><code>generateCode()</code></td><td>—</td><td>string</td><td>None</td></tr>
+</table>
+
+<h3>10.2 Utils Methods</h3>
+<table>
+    <tr><th>Method</th><th>Params</th><th>Description</th></tr>
+    <tr><td><code>openModal(id)</code></td><td>element ID</td><td>Shows modal by removing 'hidden'</td></tr>
+    <tr><td><code>closeModal(id)</code></td><td>element ID</td><td>Hides modal by adding 'hidden'</td></tr>
+    <tr><td><code>showToast(msg, type)</code></td><td>string, 'success'|'error'</td><td>Animated notification (3s)</td></tr>
+    <tr><td><code>formatDate(str)</code></td><td>ISO string</td><td>Locale date string</td></tr>
+</table>
+
+<h3>10.3 App Methods</h3>
+<table>
+    <tr><th>Method</th><th>Params</th><th>Description</th></tr>
+    <tr><td><code>navigate(page)</code></td><td>page ID string</td><td>Routes to page, updates sidebar, animates content</td></tr>
+    <tr><td><code>renderDashboard()</code></td><td>—</td><td>Builds sidebar + main shell, navigates to overview</td></tr>
+    <tr><td><code>handleAction(action, id, extra, event)</code></td><td>4 params</td><td>Central dispatcher for all click events</td></tr>
+</table>
+
+<h3>10.4 Feature Module Entry Points</h3>
+<table>
+    <tr><th>Module</th><th>Entry Method</th><th>Params</th></tr>
+    <tr><td><code>Auth</code></td><td><code>render(app)</code></td><td>App instance</td></tr>
+    <tr><td><code>Admin</code></td><td><code>renderPage(page, container, app)</code></td><td>page ID, DOM element, App instance</td></tr>
+    <tr><td><code>Trainer</code></td><td><code>renderPage(page, container, app)</code></td><td>page ID, DOM element, App instance</td></tr>
+    <tr><td><code>Student</code></td><td><code>renderPage(page, container, app)</code></td><td>page ID, DOM element, App instance</td></tr>
+    <tr><td><code>Shared</code></td><td><code>renderProfile(container, app)</code></td><td>DOM element, App instance</td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 11: TROUBLESHOOTING -->
+<h2>11. Troubleshooting</h2>
+
+<h3>11.1 Common Issues</h3>
+
+<table>
+    <tr><th>Symptom</th><th>Cause</th><th>Solution</th></tr>
+    <tr>
+        <td>Blank white screen</td>
+        <td>ES modules blocked by <code>file://</code> protocol</td>
+        <td>Use a local HTTP server (see Section 9.1)</td>
+    </tr>
+    <tr>
+        <td>Styles not loading</td>
+        <td>Tailwind CDN unreachable</td>
+        <td>Check internet connection or download Tailwind locally</td>
+    </tr>
+    <tr>
+        <td>Data resets on refresh</td>
+        <td>localStorage disabled or full</td>
+        <td>Enable localStorage in browser settings; clear old data</td>
+    </tr>
+    <tr>
+        <td>Cannot delete user</td>
+        <td>Trying to delete currently logged-in user</td>
+        <td>Log in as a different admin account first</td>
+    </tr>
+    <tr>
+        <td>Grade modal shows old data</td>
+        <td>Modal not cleared between openings</td>
+        <td>Click Cancel to close, then reopen</td>
+    </tr>
+    <tr>
+        <td>Mobile sidebar won't close</td>
+        <td>Click outside sidebar not handled</td>
+        <td>Click the hamburger button again to toggle</td>
+    </tr>
+</table>
+
+<h3>11.2 Resetting Application Data</h3>
+<p>To clear all data and return to the seeded defaults:</p>
+<ol>
+    <li>Open browser DevTools (F12)</li>
+    <li>Go to <strong>Application → Local Storage</strong></li>
+    <li>Delete the keys: <code>portal_data</code> and <code>portal_session</code></li>
+    <li>Refresh the page</li>
+</ol>
+
+<h3>11.3 Extending the Application</h3>
+
+<h4>Adding a New Page</h4>
+<ol>
+    <li>Add entry to <code>sidebarConfig</code> in <code>app.js</code> for the target role(s)</li>
+    <li>Add rendering case in the role's <code>renderPage()</code> method</li>
+    <li>Add any new <code>data-action</code> handlers to <code>App.handleAction()</code></li>
+    <li>Add modal HTML inside the renderer if needed</li>
+</ol>
+
+<h4>Adding a New Entity</h4>
+<ol>
+    <li>Add array to <code>store</code> object (e.g., <code>announcements: []</code>)</li>
+    <li>Update <code>store.save()</code> and <code>store.init()</code> to include the new array</li>
+    <li>Add CRUD methods in the appropriate feature module</li>
+    <li>Remember to call <code>store.save()</code> after every mutation</li>
+</ol>
+
+<div class="success-box">
+    <strong>✓ You're all set!</strong> This documentation covers every file, every function, and every user flow in the Assignment Submission Portal. For questions or contributions, refer to the README.md included in the project root.
+</div>
+
+</body>
+</html>
