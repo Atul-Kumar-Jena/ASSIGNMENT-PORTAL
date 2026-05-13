@@ -1,0 +1,6 @@
+# GitHub Pages Jekyll Configuration
+markdown: kramdown
+highlighter: rouge
+theme: null
+plugins: []
+exclude: [node_modules, .git]
