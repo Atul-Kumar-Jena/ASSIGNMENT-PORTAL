@@ -1,0 +1,9 @@
+cat > _config.yml << 'EOF'
+# GitHub Pages Jekyll Configuration
+markdown: kramdown
+highlighter: rouge
+theme: null
+plugins: []
+exclude: [node_modules, .git]
+EOF
+git add _config.yml && git commit -m "Add Jekyll config for GitHub Pages" && git push origin main
